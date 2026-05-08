@@ -908,6 +908,12 @@ nav.wp-block-query-pagination > div:has(> .pagination-btn:only-child) {
     background-color: var(--wp--preset--color--base) !important;
   }
 
+  /* Avatar ring matches the (dark) header background, not the light base-2. */
+  .site-header .wp-block-avatar img,
+  .site-header .wp-block-site-logo img {
+    border-color: var(--wp--preset--color--base) !important;
+  }
+
   /* Header inner border */
   .header-inner {
     border-color: var(--wp--preset--color--custom-border-light) !important;
@@ -942,12 +948,6 @@ nav.wp-block-query-pagination > div:has(> .pagination-btn:only-child) {
     background: #252525 !important;
     color: var(--wp--preset--color--contrast-2) !important;
     border-color: #252525 !important;
-  }
-
-  /* Avatar logo circular border in dark */
-  .site-header .wp-block-site-logo img,
-  .wp-block-avatar img {
-    opacity: 0.9;
   }
 
   /* 404 search */
