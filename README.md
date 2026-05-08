@@ -4,7 +4,7 @@ A minimal personal microblog block theme for WordPress.
 
 Microblog turns a WordPress site into a single-author, Twitter-style feed: short posts stacked in cards, a profile header, no sidebars, no clutter. It's a full block theme — every part is editable from the Site Editor.
 
-![Microblog feed](.github/screenshots/home.png)
+![Microblog feed](screenshot.png)
 
 ## Features
 
@@ -18,12 +18,6 @@ Microblog turns a WordPress site into a single-author, Twitter-style feed: short
 - **Variable web fonts** — Inter (body) and Cardo (headings) loaded from [Bunny Fonts](https://fonts.bunny.net/) (GDPR-friendly, no Google Fonts).
 - **Mobile-first top bar** that stays in document flow on mobile and scrolls with the page.
 - **Light, semantic palette** with Base / Contrast / Accent slots that you can override from Site Editor → Styles.
-
-## Screenshots
-
-| Desktop | Mobile |
-| --- | --- |
-| ![Desktop](.github/screenshots/home.png) | ![Mobile](.github/screenshots/mobile.png) |
 
 ## Requirements
 
