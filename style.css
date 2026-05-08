@@ -698,6 +698,89 @@ main > .wp-block-buttons .wp-block-button__link:focus {
   border-color: #efefef !important;
 }
 
+/* === 404 === */
+
+/* Body container: same surface as a post body, no hover (it’s the destination). */
+.not-found-body,
+.not-found-body:hover {
+  background: transparent !important;
+  transition: none !important;
+}
+
+/* Title — same Cardo treatment as h2 in the rest of the site. */
+.not-found-title {
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--x-large);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5rem 0;
+  color: var(--wp--preset--color--contrast);
+}
+
+/* Body copy — inherit paragraph size/line-height set in typography. */
+.not-found-text {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--wp--preset--color--contrast-2);
+  margin: 0 0 1.25rem 0;
+}
+
+/* Search field — match the theme: rounded, contrast border, no shadow. */
+.not-found-search .wp-block-search__inside-wrapper {
+  border: 1px solid var(--wp--preset--color--custom-border-light);
+  border-radius: 8px;
+  background: var(--wp--preset--color--base);
+  padding: 4px;
+  transition: border-color 0.15s ease;
+}
+
+.not-found-search .wp-block-search__inside-wrapper:focus-within {
+  border-color: var(--wp--preset--color--contrast-3);
+}
+
+.not-found-search .wp-block-search__input {
+  font-family: var(--wp--preset--font-family--body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--wp--preset--color--contrast);
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  min-width: 0;
+}
+
+.not-found-search .wp-block-search__input::placeholder {
+  color: var(--wp--preset--color--contrast-3);
+}
+
+.not-found-search .wp-block-search__input:focus {
+  outline: none;
+}
+
+/* Search submit — same look as the “See More Posts” button. */
+.not-found-search .wp-block-search__button {
+  font-family: var(--wp--preset--font-family--body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--wp--preset--color--contrast-2);
+  background: var(--wp--preset--color--base);
+  border: 1px solid var(--wp--preset--color--base);
+  border-radius: 6px;
+  padding: 8px 14px;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.not-found-search .wp-block-search__button:hover,
+.not-found-search .wp-block-search__button:focus {
+  background: #efefef;
+  border-color: #efefef;
+  color: var(--wp--preset--color--contrast-2);
+}
+
 /* === pagination === */
 
 nav.wp-block-query-pagination {
@@ -865,6 +948,28 @@ nav.wp-block-query-pagination > div:has(> .pagination-btn:only-child) {
   .site-header .wp-block-site-logo img,
   .wp-block-avatar img {
     opacity: 0.9;
+  }
+
+  /* 404 search */
+  .not-found-search .wp-block-search__inside-wrapper {
+    background: var(--wp--preset--color--base-2);
+    border-color: var(--wp--preset--color--custom-border-light);
+  }
+
+  .not-found-search .wp-block-search__input {
+    color: var(--wp--preset--color--contrast);
+  }
+
+  .not-found-search .wp-block-search__button {
+    background: var(--wp--preset--color--base-2) !important;
+    border-color: var(--wp--preset--color--custom-border-light) !important;
+    color: var(--wp--preset--color--contrast-2) !important;
+  }
+
+  .not-found-search .wp-block-search__button:hover,
+  .not-found-search .wp-block-search__button:focus {
+    background: #252525 !important;
+    border-color: #252525 !important;
   }
 }
 
