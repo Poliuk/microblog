@@ -136,6 +136,22 @@ add_filter( 'render_block_core/site-logo', function( $block_content, $block ) {
  * comes from the .wp-block-post-content a rules in style.css, identical to
  * any inline link.
  */
+/**
+ * Replace the `{search_query}` token in any block content with the current
+ * search term. Used by templates/search.html's no-results heading so the
+ * template can read `No results for “{search_query}”` literally — keeping
+ * the placeholder visible in the editor — and the swap happens at render.
+ *
+ * Scoped to is_search() so the token never leaks elsewhere.
+ */
+add_filter( 'render_block', function ( $block_content, $block ) {
+	if ( ! is_search() || strpos( $block_content, '{search_query}' ) === false ) {
+		return $block_content;
+	}
+	$term = trim( (string) get_search_query( false ) );
+	return str_replace( '{search_query}', esc_html( $term ), $block_content );
+}, 10, 2 );
+
 add_filter( 'the_content_more_link', function( $link, $more_link_text ) {
 	$href = get_permalink();
 	$title = get_the_title();

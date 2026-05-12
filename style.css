@@ -755,6 +755,105 @@ a {
   border: none !important;
 }
 
+/* === search results page ===
+   Inline search input sits in the .single-nav row, right of the back arrow.
+   The row is 34px tall (matching the back-arrow target), so the input is
+   small and tight — not the full card affordance .not-found-search renders.
+   On the search results page core/search auto-fills the input with the
+   current ?s= query, so the term-being-searched requirement is satisfied
+   without any extra markup. */
+
+.single-nav--search {
+  gap: 8px !important;
+}
+
+.single-nav-search {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+}
+
+.single-nav-search .wp-block-search__inside-wrapper {
+  border: 1px solid var(--wp--preset--color--custom-border-light);
+  border-radius: 999px;
+  background: var(--wp--preset--color--base);
+  padding: 0;
+  transition: border-color 0.15s ease;
+}
+
+.single-nav-search .wp-block-search__inside-wrapper:focus-within {
+  border-color: var(--wp--preset--color--contrast-3);
+}
+
+.single-nav-search .wp-block-search__input {
+  font-family: var(--wp--preset--font-family--body);
+  font-size: 0.9rem;
+  line-height: 1.2;
+  color: var(--wp--preset--color--contrast);
+  background: transparent;
+  border: none;
+  padding: 6px 14px;
+  min-width: 0;
+  width: 100%;
+}
+
+.single-nav-search .wp-block-search__input::placeholder {
+  color: var(--wp--preset--color--contrast-3);
+}
+
+.single-nav-search .wp-block-search__input:focus {
+  outline: none;
+}
+
+/* No-results empty state — Twitter-style: centered, generous vertical room,
+   bold black heading with the search term inline, muted secondary line. The
+   {search_query} token in the heading is replaced server-side by the
+   render_block filter in functions.php so the editor still shows the
+   placeholder while the frontend renders the actual term. */
+.search-no-results {
+  background: transparent;
+  text-align: left;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.search-no-results__title {
+  font-family: var(--wp--preset--font-family--body);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.018em;
+  color: var(--wp--preset--color--contrast);
+  margin: 0 0 8px 0;
+  text-wrap: balance;
+}
+
+.search-no-results__term {
+  /* Inline with the heading text — no special treatment beyond inheriting
+     the heading colour/weight. The quotes around it come from the literal
+     curly-quote chars in the template. */
+  word-break: break-word;
+}
+
+.search-no-results__text {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--wp--preset--color--contrast-2);
+  margin: 0;
+}
+
+/* Dark-mode wrapper for the inline search. */
+@media (prefers-color-scheme: dark) {
+  .single-nav-search .wp-block-search__inside-wrapper {
+    background: var(--wp--preset--color--base-2);
+    border-color: var(--wp--preset--color--custom-border-light);
+  }
+
+  .single-nav-search .wp-block-search__input {
+    color: var(--wp--preset--color--contrast);
+  }
+}
+
 /* === see-more button (single post) === */
 
 main > .wp-block-buttons {
