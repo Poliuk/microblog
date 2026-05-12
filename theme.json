@@ -45,7 +45,7 @@
           "name": "Body",
           "fontFamily": "\"Inter\", sans-serif",
           "fontFace": [
-            { "fontFamily": "Inter", "fontStyle": "normal", "fontWeight": "300 900", "fontDisplay": "swap", "src": ["https://fonts.bunny.net/inter/files/inter-latin-variable-full-normal.woff2"] }
+            { "fontFamily": "Inter", "fontStyle": "normal", "fontWeight": "300 900", "fontDisplay": "swap", "src": ["file:./assets/fonts/inter-latin-variable-full-normal.woff2"] }
           ]
         },
         {
@@ -53,9 +53,9 @@
           "name": "Heading",
           "fontFamily": "Cardo, serif",
           "fontFace": [
-            { "fontFamily": "Cardo", "fontStyle": "normal",  "fontWeight": "400", "fontDisplay": "swap", "src": ["https://fonts.bunny.net/cardo/files/cardo-latin-400-normal.woff2"] },
-            { "fontFamily": "Cardo", "fontStyle": "italic",  "fontWeight": "400", "fontDisplay": "swap", "src": ["https://fonts.bunny.net/cardo/files/cardo-latin-400-italic.woff2"] },
-            { "fontFamily": "Cardo", "fontStyle": "normal",  "fontWeight": "700", "fontDisplay": "swap", "src": ["https://fonts.bunny.net/cardo/files/cardo-latin-700-normal.woff2"] }
+            { "fontFamily": "Cardo", "fontStyle": "normal",  "fontWeight": "400", "fontDisplay": "swap", "src": ["file:./assets/fonts/cardo-latin-400-normal.woff2"] },
+            { "fontFamily": "Cardo", "fontStyle": "italic",  "fontWeight": "400", "fontDisplay": "swap", "src": ["file:./assets/fonts/cardo-latin-400-italic.woff2"] },
+            { "fontFamily": "Cardo", "fontStyle": "normal",  "fontWeight": "700", "fontDisplay": "swap", "src": ["file:./assets/fonts/cardo-latin-700-normal.woff2"] }
           ]
         }
       ],

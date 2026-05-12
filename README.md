@@ -6,19 +6,6 @@ Microblog turns a WordPress site into a single-author, Twitter-style feed: short
 
 ![Microblog feed](screenshot.png)
 
-## Features
-
-- **Block theme.** Built entirely with `theme.json`, block templates, and template parts. No PHP markup to maintain.
-- **Centered single-column feed** at 714px, optimised for short-form posts.
-- **Profile header** with site avatar (uses your Site Icon), display name, handle, and bio.
-- **Post cards** with author avatar, post content, and date — styled like a microblog timeline.
-- **Avatar = Site Icon.** The `core/avatar` and `core/site-logo` blocks are filtered to use the WordPress Site Icon, so your favicon, app icon, and on-site avatar are always in sync.
-- **Read more →** link replaces the default `(more…)` teaser, styled inline with the rest of your post links.
-- **Pagination buttons** that match the "See More Posts" button on single posts (consistent button styling across the theme).
-- **Variable web fonts** — Inter (body) and Cardo (headings) loaded from [Bunny Fonts](https://fonts.bunny.net/) (GDPR-friendly, no Google Fonts).
-- **Mobile-first top bar** that stays in document flow on mobile and scrolls with the page.
-- **Light, semantic palette** with Base / Contrast / Accent slots that you can override from Site Editor → Styles.
-
 ## Requirements
 
 - WordPress 6.7 or later
