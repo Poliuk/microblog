@@ -197,14 +197,17 @@ header.wp-block-template-part {
   position: relative;
 }
 
+/* Header avatar — Twitter-style: 133.5×133.5 image with a 4px ring rendered
+   on the outside (content-box), pulled up so it straddles the banner edge by
+   half of its outer footprint (141.5px / 2 ≈ 71px). */
 .site-header .wp-block-avatar,
 .site-header .wp-block-site-logo {
   display: block;
-  width: 112px !important;
+  width: 141.5px !important;
   margin-left: 0 !important;
   margin-right: auto;
   flex-shrink: 0;
-  margin-top: -56px !important;
+  margin-top: -71px !important;
   position: relative;
   z-index: 2;
 }
@@ -212,12 +215,12 @@ header.wp-block-template-part {
 .site-header .wp-block-avatar img,
 .site-header .wp-block-site-logo img {
   display: block;
-  width: 112px !important;
-  height: 112px !important;
+  width: 133.5px !important;
+  height: 133.5px !important;
   border-radius: 100px !important;
   object-fit: cover;
   border: 4px solid var(--wp--preset--color--base-2);
-  box-sizing: border-box;
+  box-sizing: content-box;
 }
 
 .site-header .wp-block-avatar a,
@@ -288,11 +291,28 @@ header.wp-block-template-part {
   }
 }
 
-/* === post-card === */
+/* === surface ===
+   Shared card-shell system. Any element that should look like a white card
+   surface gets `.surface`. The 1px ring around the outermost card on each
+   page (header, single-card, 404 card) gets `.surface--bordered`.
 
-/* Post card — now uses wp:columns, just needs background + hover */
-.post-card {
+   Defining the surface in one place keeps the look consistent and means
+   responsive + dark-mode flips happen for every card at once. Layout-specific
+   rules (padding, hover, flex behaviour) still live on the named class
+   (.post-card, .single-card, .header-inner, .not-found-body, etc.).
+*/
+.surface {
   background: var(--wp--preset--color--base-2);
+}
+
+.surface--bordered {
+  border: 1px solid var(--wp--preset--color--custom-border-light);
+}
+
+/* === post-card ===
+   Layout, hover, and inner-element rules for feed cards. Background comes
+   from `.surface`. */
+.post-card {
   transition: background 0.15s ease;
 }
 
@@ -300,7 +320,8 @@ header.wp-block-template-part {
   background: var(--wp--preset--color--base);
 }
 
-/* Single template: the post is the destination, not a feed item — no hover. */
+/* Single template: the post body is the destination, not a feed item — no
+   hover, transparent so the wrapping `.surface` shows through. */
 .single-card .post-card,
 .single-card .post-card:hover {
   background: transparent;
@@ -579,13 +600,49 @@ a {
   max-width: 100%;
 }
 
+/* === verified-badge ===
+   Twitter-style blue check appended to the site title in the three places
+   the brand identity is shown: big header card, sticky topbar, single-post
+   author row. The badge is rendered as an `::after` pseudo-element on the
+   site-title link — it stays on the same baseline, follows the text if it
+   wraps, and never enters the markup, so templates remain clean.
+   Asset: assets/verified_badge.svg (Twitter-blue #1d9bf0). */
+.site-header .header-content .wp-block-site-title a::after,
+.header-topbar .wp-block-site-title a::after,
+.single-author .wp-block-site-title a::after {
+  content: "";
+  display: inline-block;
+  vertical-align: -0.12em;
+  margin-left: 0.25em;
+  background-image: url("assets/verified_badge.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  /* 1em badge so it scales naturally with the title font-size. */
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+/* Header card title is bigger (clamp ~0.875–1.2rem) — a slightly larger badge
+   reads better there. */
+.site-header .header-content .wp-block-site-title a::after {
+  width: 1.05em;
+  height: 1.05em;
+}
+
+/* Single-post author row: bump the badge a hair so it matches Twitter’s
+   visual weight next to the 15px / 700 name. */
+.single-author .wp-block-site-title a::after {
+  width: 1.15em;
+  height: 1.15em;
+}
+
 /* === single post header === */
 
-/* Single card: one outer border, children share internal bottom dividers.
-   Match the post-card background so the nav row, author row, and post body
-   read as a single unified white card. */
+/* Single card: one unified white card. Background and outer 1px border come
+   from `.surface .surface--bordered` on the same element. */
 .single-card {
-  background: var(--wp--preset--color--base-2);
   margin-block-start: 0 !important;
   margin-top: 0 !important;
   gap: 0 !important;
@@ -660,10 +717,13 @@ a {
   object-fit: cover;
 }
 
+/* Twitter’s tweet-header byline: name is 15px / 700, handle is 15px / 400
+   muted. Both lines share the same baseline scale, line-height tight at 1.25. */
 .single-author .wp-block-site-title {
-  font-size: 0.9rem !important;
-  font-weight: 600 !important;
-  line-height: 1.3 !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.01em !important;
   margin: 0 !important;
 }
 
@@ -673,10 +733,11 @@ a {
 }
 
 .single-author .wp-block-site-tagline {
-  font-size: 0.8rem !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  line-height: 1.25 !important;
   color: var(--wp--preset--color--contrast-2) !important;
   margin: 0 !important;
-  line-height: 1.3;
 }
 
 /* Post card inside single: no extra border, padding only */
@@ -821,12 +882,18 @@ nav.wp-block-query-pagination > div:has(> .pagination-btn:only-child) {
     max-width: 100%;
   }
 
+  /* Mobile avatar: 96×96 image + 4px outer ring → 104×104 footprint, pulled
+     up by half (52px) to straddle the banner edge. */
   .site-header .wp-block-avatar,
+  .site-header .wp-block-site-logo {
+    width: 104px !important;
+    margin-top: -52px !important;
+  }
+
   .site-header .wp-block-avatar img,
-  .site-header .wp-block-site-logo,
   .site-header .wp-block-site-logo img {
-    width: 80px !important;
-    height: 80px !important;
+    width: 96px !important;
+    height: 96px !important;
   }
 }
 
@@ -851,22 +918,22 @@ nav.wp-block-query-pagination > div:has(> .pagination-btn:only-child) {
     padding-right: 0 !important;
   }
 
-  /* Cards: full-width, no side borders, keep bottom divider */
-  .post-card,
-  .wp-block-columns.post-card,
-  .wp-block-group.post-card {
+  /* Bordered surfaces: drop side borders so the card meets the screen edges,
+     keep top/bottom dividers, force full width. Covers .header-inner,
+     .single-card, the 404 card, and any feed card that opts into a border. */
+  .surface--bordered {
     border-left: none !important;
     border-right: none !important;
-    padding-left: 16px !important;
-    padding-right: 16px !important;
     width: 100% !important;
     box-sizing: border-box;
   }
 
-  /* Header inner: no side borders */
-  .header-inner {
-    border-left: none !important;
-    border-right: none !important;
+  /* Feed cards still need their inner padding adjusted on mobile. */
+  .post-card {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    width: 100% !important;
+    box-sizing: border-box;
   }
 
   /* See More Posts: no side borders */
@@ -899,12 +966,11 @@ nav.wp-block-query-pagination > div:has(> .pagination-btn:only-child) {
     --wp--preset--color--custom-link-alt: #6b8cff;
   }
 
-  /* Header & cards background */
+  /* Every card surface flips to the dark base. `.site-header` is listed
+     separately because it carries a theme.json palette class
+     (`has-base-2-background-color`) that wins specificity-wise. */
   .site-header,
-  .single-card,
-  .post-card,
-  .wp-block-columns.post-card,
-  .wp-block-group.post-card {
+  .surface {
     background-color: var(--wp--preset--color--base) !important;
   }
 
