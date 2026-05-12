@@ -282,15 +282,6 @@ header.wp-block-template-part {
   vertical-align: middle;
 }
 
-@media (max-width: 480px) {
-  .header-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 16px;
-    gap: 8px;
-  }
-}
-
 /* === surface ===
    Shared card-shell system. Any element that should look like a white card
    surface gets `.surface`. The 1px ring around the outermost card on each
@@ -334,8 +325,9 @@ header.wp-block-template-part {
   max-width: 40px !important;
 }
 
-/* Avatar image — circular */
-.post-card .wp-block-avatar img {
+/* Avatar image — circular (feed cards + single-post author row) */
+.post-card .wp-block-avatar img,
+.single-author .wp-block-avatar img {
   width: 40px !important;
   height: 40px !important;
   border-radius: 100px !important;
@@ -351,18 +343,10 @@ header.wp-block-template-part {
 
 .post-card .wp-block-post-content p {
   margin-block: 0 var(--wp--preset--spacing--10);
-  text-wrap: pretty;
 }
 
 .post-card .wp-block-post-content p:last-child {
   margin-block-end: 0;
-}
-
-/* Images inside posts */
-.post-card .wp-block-post-content img {
-  border-radius: 8px;
-  max-width: 100%;
-  height: auto;
 }
 
 /* Links inside post content stay contrast-2, not the global blue */
@@ -387,18 +371,11 @@ header.wp-block-template-part {
   margin-top: 8px;
 }
 
-.post-meta-row .wp-block-post-date,
-.post-meta-row .wp-block-post-date a {
-  color: var(--wp--preset--color--contrast-2) !important;
+.post-meta-row .wp-block-post-date {
   font-size: 0.8rem;
-  text-decoration: none !important;
 }
 
-.post-meta-row .wp-block-post-date a:hover {
-  text-decoration: underline !important;
-}
-
-/* Single post date (outside post-meta-row) */
+/* Post date link styling (feed + single) */
 .wp-block-post-date a {
   color: var(--wp--preset--color--contrast-2) !important;
   text-decoration: none !important;
@@ -406,6 +383,47 @@ header.wp-block-template-part {
 
 .wp-block-post-date a:hover {
   text-decoration: underline !important;
+}
+
+/* === post-card-title ===
+   Optional post/page title rendered inside the card content stream. Users
+   default to title-less posts, so when the title is empty the block still
+   outputs an empty <h1>/<h2>. Hide that empty node entirely so it doesn't
+   create a phantom gap above the content. */
+.post-card-title {
+  font-family: var(--wp--preset--font-family--body);
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  line-height: 1.2;
+  color: var(--wp--preset--color--contrast);
+  margin: 0 0 var(--wp--preset--spacing--10) 0;
+}
+
+/* Single + page templates: bigger, since the title is the page header. */
+h1.post-card-title {
+  font-size: 1.6rem;
+}
+
+/* Feed cards: smaller, denser — the title is a glance-level affordance. */
+h2.post-card-title {
+  font-size: 1.1rem;
+}
+
+/* Feed cards link the title to the post. Match the content link colour
+   (contrast), not the muted contrast-2 used for body links. */
+h2.post-card-title a {
+  color: var(--wp--preset--color--contrast);
+  text-decoration: none;
+}
+
+h2.post-card-title a:hover {
+  text-decoration: underline;
+}
+
+/* Hide the title node entirely when the post has no title — prevents the
+   margin-bottom above from leaving a gap on title-less microblog posts. */
+.post-card-title:empty {
+  display: none;
 }
 
 /* === media === */
@@ -656,8 +674,7 @@ a {
   align-items: stretch !important;
 }
 
-.single-card > *,
-.single-card > * + * {
+.single-card > * {
   margin-block-start: 0 !important;
   margin-block-end: 0 !important;
   margin-top: 0 !important;
@@ -708,13 +725,6 @@ a {
 
 .single-author .wp-block-avatar {
   flex-shrink: 0;
-}
-
-.single-author .wp-block-avatar img {
-  width: 40px !important;
-  height: 40px !important;
-  border-radius: 100px !important;
-  object-fit: cover;
 }
 
 /* Twitter’s tweet-header byline: name is 15px / 700, handle is 15px / 400
