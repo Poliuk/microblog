@@ -152,6 +152,27 @@ add_filter( 'render_block', function ( $block_content, $block ) {
 	return str_replace( '{search_query}', esc_html( $term ), $block_content );
 }, 10, 2 );
 
+/**
+ * Hide the "See More Posts" buttons block on the search template when the
+ * current search yielded no results. The template marks the block with the
+ * `search-see-more-posts` className; this filter checks the main query on
+ * search pages and returns an empty string when there are zero posts so the
+ * button only appears alongside actual results.
+ */
+add_filter( 'render_block_core/buttons', function ( $block_content, $block ) {
+	$class_name = $block['attrs']['className'] ?? '';
+	if ( strpos( $class_name, 'search-see-more-posts' ) === false ) {
+		return $block_content;
+	}
+	if ( is_search() ) {
+		global $wp_query;
+		if ( empty( $wp_query->posts ) ) {
+			return '';
+		}
+	}
+	return $block_content;
+}, 10, 2 );
+
 add_filter( 'the_content_more_link', function( $link, $more_link_text ) {
 	$href = get_permalink();
 	$title = get_the_title();
