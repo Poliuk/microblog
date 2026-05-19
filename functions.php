@@ -163,6 +163,25 @@ add_filter( 'render_block_core/buttons', function ( $block_content, $block ) {
 }, 10, 2 );
 
 /**
+ * Send wp:avatar links to the homepage instead of the author archive.
+ *
+ * The core/avatar block hard-codes `get_author_posts_url()` when isLink is true.
+ * For a single-author microblog the author archive is redundant with the home
+ * feed, so we rewrite the href to home_url() on the rendered output.
+ */
+add_filter( 'render_block_core/avatar', function ( $block_content, $block ) {
+	if ( empty( $block_content ) || empty( $block['attrs']['isLink'] ) ) {
+		return $block_content;
+	}
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+	if ( $processor->next_tag( 'a' ) ) {
+		$processor->set_attribute( 'href', home_url( '/' ) );
+		return $processor->get_updated_html();
+	}
+	return $block_content;
+}, 10, 2 );
+
+/**
  * Customise the <!--more--> teaser link in feed views.
  * Replaces the default "(more…)" span with a translatable "Read More →" label
  * and removes the `#more-N` fragment so the link points to the post itself —
