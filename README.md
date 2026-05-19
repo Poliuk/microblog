@@ -38,7 +38,7 @@ wp theme install https://github.com/Poliuk/microposting/archive/refs/heads/main.
 
 After activating:
 
-1. Go to **Settings → General** and set a **Site Icon** — Microposting uses it as the profile avatar everywhere on the site.
+1. Set up your [Gravatar](https://gravatar.com) using the email address on your WordPress user account — Microposting uses it as the profile avatar in the header and post cards.
 2. Edit the profile bio in **Appearance → Editor → Patterns → Header** (or by editing `parts/header.html`).
 3. Start posting. Short posts render as cards in the feed; longer posts work as full single-post pages.
 
