@@ -1,10 +1,10 @@
-# Microblog
+# Microposting
 
 A minimal personal microblog block theme for WordPress.
 
-Microblog turns a WordPress site into a single-author, Twitter-style feed: short posts stacked in cards, a profile header, no sidebars, no clutter. It's a full block theme — every part is editable from the Site Editor.
+Microposting turns a WordPress site into a single-author, Twitter-style feed: short posts stacked in cards, a profile header, no sidebars, no clutter. It's a full block theme — every part is editable from the Site Editor.
 
-![Microblog feed](screenshot.png)
+![Microposting feed](screenshot.png)
 
 ## Requirements
 
@@ -15,7 +15,7 @@ Microblog turns a WordPress site into a single-author, Twitter-style feed: short
 
 ### From a release zip
 
-1. Download the latest [release zip](https://github.com/Poliuk/microblog/releases) (or zip this repository).
+1. Download the latest [release zip](https://github.com/Poliuk/microposting/releases) (or zip this repository).
 2. In WordPress, go to **Appearance → Themes → Add New → Upload Theme**.
 3. Choose the zip, click **Install Now**, then **Activate**.
 
@@ -23,22 +23,22 @@ Microblog turns a WordPress site into a single-author, Twitter-style feed: short
 
 ```bash
 cd wp-content/themes
-git clone https://github.com/Poliuk/microblog.git
+git clone https://github.com/Poliuk/microposting.git
 ```
 
-Then activate **Microblog** from **Appearance → Themes**.
+Then activate **Microposting** from **Appearance → Themes**.
 
 ### Via WP-CLI
 
 ```bash
-wp theme install https://github.com/Poliuk/microblog/archive/refs/heads/main.zip --activate
+wp theme install https://github.com/Poliuk/microposting/archive/refs/heads/main.zip --activate
 ```
 
 ## Setup
 
 After activating:
 
-1. Go to **Settings → General** and set a **Site Icon** — Microblog uses it as the profile avatar everywhere on the site.
+1. Go to **Settings → General** and set a **Site Icon** — Microposting uses it as the profile avatar everywhere on the site.
 2. Edit the profile bio in **Appearance → Editor → Patterns → Header** (or by editing `parts/header.html`).
 3. Start posting. Short posts render as cards in the feed; longer posts work as full single-post pages.
 

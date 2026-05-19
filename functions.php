@@ -1,13 +1,13 @@
 <?php
 /**
- * Microblog theme functions.
+ * Microposting theme functions.
  *
- * @package microblog
+ * @package microposting
  */
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style(
-		'microblog-style',
+		'microposting-style',
 		get_parent_theme_file_uri( 'style.css' ),
 		array(),
 		wp_get_theme()->get( 'Version' )
@@ -16,7 +16,7 @@ add_action( 'wp_enqueue_scripts', function () {
 	// Mobile: admin bar is 46px in-flow, scrolls away with the page.
 	if ( is_admin_bar_showing() ) {
 		wp_enqueue_script(
-			'microblog-topbar',
+			'microposting-topbar',
 			get_parent_theme_file_uri( 'assets/topbar.js' ),
 			array(),
 			wp_get_theme()->get( 'Version' ),
@@ -37,7 +37,7 @@ add_filter( 'pre_option_avatar_default', fn() => 'mystery' );
  * Wrap pagination next/previous links with wp-element-button classes
  * so they look identical to the "See More Posts" button on single posts.
  */
-function microblog_wrap_pagination_button( $block_content, $type ) {
+function microposting_wrap_pagination_button( $block_content, $type ) {
 	if ( empty( trim( $block_content ) ) ) return $block_content;
 	$block_content = preg_replace(
 		'/<a ([^>]*)class="([^"]*)' . preg_quote( $type, '/' ) . '([^"]*)"/',
@@ -48,11 +48,11 @@ function microblog_wrap_pagination_button( $block_content, $type ) {
 }
 
 add_filter( 'render_block_core/query-pagination-next', function( $block_content ) {
-	return microblog_wrap_pagination_button( $block_content, 'wp-block-query-pagination-next' );
+	return microposting_wrap_pagination_button( $block_content, 'wp-block-query-pagination-next' );
 }, 10, 1 );
 
 add_filter( 'render_block_core/query-pagination-previous', function( $block_content ) {
-	return microblog_wrap_pagination_button( $block_content, 'wp-block-query-pagination-previous' );
+	return microposting_wrap_pagination_button( $block_content, 'wp-block-query-pagination-previous' );
 }, 10, 1 );
 
 /**
