@@ -4,6 +4,14 @@
  * Slug: microposting/404-content
  * Inserter: no
  */
+$search_attrs = wp_json_encode( array(
+	'label'          => __( 'Search', 'microposting' ),
+	'showLabel'      => false,
+	'placeholder'    => __( 'Search posts…', 'microposting' ),
+	'buttonText'     => __( 'Search', 'microposting' ),
+	'buttonPosition' => 'button-inside',
+	'className'      => 'not-found-search',
+) );
 ?>
 <!-- wp:group {"className":"single-nav","style":{"spacing":{"padding":{"top":"6px","right":"16px","bottom":"6px","left":"8px"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center","justifyContent":"left"}} -->
 <div class="wp-block-group single-nav" style="padding-top:6px;padding-right:16px;padding-bottom:6px;padding-left:8px;margin-top:0;margin-bottom:0">
@@ -24,7 +32,7 @@
 	<p class="not-found-text"><?php echo esc_html__( 'The page you were looking for doesn’t exist. Try searching for it instead.', 'microposting' ); ?></p>
 	<!-- /wp:paragraph -->
 
-	<!-- wp:search {"label":"<?php echo esc_attr__( 'Search', 'microposting' ); ?>","showLabel":false,"placeholder":"<?php echo esc_attr__( 'Search posts…', 'microposting' ); ?>","buttonText":"<?php echo esc_attr__( 'Search', 'microposting' ); ?>","buttonPosition":"button-inside","className":"not-found-search"} /-->
+	<!-- wp:search <?php echo $search_attrs; ?> /-->
 
 </div>
 <!-- /wp:group -->
