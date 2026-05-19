@@ -98,6 +98,34 @@ add_filter( 'render_block_core/query-pagination-previous', function( $block_cont
 }, 10, 1 );
 
 /**
+ * Translate query-pagination labels at render time.
+ *
+ * The labels live as English text in templates/index.html and templates/search.html
+ * because the query-pagination block must be a direct child of wp:query to inherit
+ * the URL page context — wrapping it in a wp:pattern reference would break that
+ * inheritance and make the Next link appear on the last page.
+ *
+ * Calling __() with a dynamic argument translates correctly at runtime; the
+ * explicit __() calls below ensure `wp i18n make-pot` picks up the source strings.
+ */
+add_filter( 'render_block_data', function ( $parsed_block ) {
+	$paginators = array( 'core/query-pagination-previous', 'core/query-pagination-next' );
+	if ( in_array( $parsed_block['blockName'] ?? '', $paginators, true ) && ! empty( $parsed_block['attrs']['label'] ) ) {
+		$parsed_block['attrs']['label'] = __( $parsed_block['attrs']['label'], 'microposting' ); // phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText
+	}
+	return $parsed_block;
+} );
+
+// Source strings for the dynamic __() call above — keep in sync with the
+// labels in templates/index.html and templates/search.html so make-pot finds them.
+if ( false ) {
+	__( 'See Previous Posts', 'microposting' );
+	__( 'See Next Posts', 'microposting' );
+	__( 'See Previous Results', 'microposting' );
+	__( 'See Next Results', 'microposting' );
+}
+
+/**
  * Replace the `{search_query}` token in any block content with the current
  * search term. Used by templates/search.html's no-results heading so the
  * template can read `No results for “{search_query}”` literally — keeping

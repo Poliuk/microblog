@@ -46,7 +46,12 @@
 
     <!-- /wp:post-template -->
 
-    <!-- wp:pattern {"slug":"microposting/index-pagination"} /-->
+    <!-- wp:query-pagination {"paginationArrow":"none","layout":{"type":"flex","justifyContent":"space-between"}} -->
+    <div class="wp-block-query-pagination is-layout-flex">
+      <!-- wp:query-pagination-previous {"label":"See Previous Posts"} /-->
+      <!-- wp:query-pagination-next {"label":"See Next Posts"} /-->
+    </div>
+    <!-- /wp:query-pagination -->
 
     <!-- wp:query-no-results -->
     <!-- wp:pattern {"slug":"microposting/index-no-results"} /-->
