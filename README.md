@@ -1,6 +1,6 @@
 # Microposting
 
-A minimal personal microblog block theme for WordPress.
+A minimal block theme for short-form, single-author feeds.
 
 Microposting turns a WordPress site into a single-author, Twitter-style feed: short posts stacked in cards, a profile header, no sidebars, no clutter. It's a full block theme — every part is editable from the Site Editor.
 

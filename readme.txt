@@ -9,7 +9,7 @@ Stable tag: 1.0.0
 License: GNU General Public License v3.0 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-A minimal personal microblog block theme for WordPress.
+A minimal block theme for short-form, single-author feeds.
 
 == Description ==
 
