@@ -26,13 +26,17 @@ Features:
 
 == Frequently Asked Questions ==
 
-= How do I set my profile photo? =
+= How do I set the large profile picture in the header? =
 
-Microposting uses the post author's Gravatar. Sign in at gravatar.com with the same email address as your WordPress user account and upload an image there.
+It uses the Site Logo. Go to Appearance → Editor → Patterns → Template Parts → Header and click the logo placeholder to upload an image, or set one via Settings → General → Site Logo.
+
+= How do I set the small avatar next to each post in the feed? =
+
+Those use the post author's Gravatar. Sign in at gravatar.com with the same email address as your WordPress user account and upload an image there.
 
 = How do I edit the profile bio in the header? =
 
-Open Appearance → Editor → Patterns → Template Parts → Header, or edit `parts/header.html` directly.
+Open Appearance → Editor → Patterns → Header profile bio, or edit `patterns/header-profile.php` directly.
 
 = Where do I customise colors and typography? =
 
